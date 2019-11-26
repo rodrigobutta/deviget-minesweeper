@@ -35,3 +35,18 @@ You do not need to fully complete the challenge. We suggest not to spend more th
 What we want to see is how well you handle yourself given the time you spend on the problem, how you think, and how you prioritize when time is insufficient to solve everything.
 
 Please email your solution as soon as you have completed the challenge or the time is up.
+
+
+
+## Rodrigo's notes
+
+### Plan Part 1
+
+- I'm going to build a plain laravel app
+- Install Passport library to have some registration and login for handle players (yes, it's the less priority step but i think it will be better to doit first). It will deliver some nice bootstraped vuj.js login, reigstration and recovery, and handle a base session.
+- Build a GAMES table (with migrations) to store game history (status, user/player id, game config, etc)
+- Make some services (routes/controllers) to handle the game status stored in GAMES table. If at this point i'm ok with time, i'll put some Repository interface to decouple Infrastructure a bit, but i'm not sure now.
+
+### Plan Part 2
+
+- Make a blank React app and put it inside a blade. Do some tests to pass laravel session params thru JS to have the user ID inside at least. I would do an standalone app to build a layered pattern site, but i wont be able to achieve nothing in time, so i'll try to build it this way. (i'm choosing React beacuse i'm more fresh with it right now and i also have some game basic logic already built that i could use.. in wich case, i'll let you know wich parts i've reused in the comments)
