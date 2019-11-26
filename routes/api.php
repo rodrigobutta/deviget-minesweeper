@@ -16,3 +16,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// TODO put some group here for games 
+
+Route::get('games', 'GameController@getAllGames');
+Route::get('games/{id}', 'GameController@getGame');
+Route::post('games', 'GameController@createGame');
+Route::put('games/{id}', 'GameController@updateGame');
+Route::delete('games/{id}','GameController@deleteGame');
