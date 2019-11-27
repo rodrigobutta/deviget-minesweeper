@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Board from './Game/Board';
+
 class Main extends React.Component {
 
     
@@ -13,7 +15,8 @@ class Main extends React.Component {
         
         return (                              
             <React.Fragment>
-                Session user coming from outside to props
+                
+                <Board level={2}  />  
 
             </React.Fragment>
         );
