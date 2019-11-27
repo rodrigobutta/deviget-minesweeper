@@ -54,8 +54,6 @@ Please email your solution as soon as you have completed the challenge or the ti
 
 
 
-### postman urls
+### Real world
 
-
-GET http://local.deviget-minesweeper.com/api/games/42bb65ce-e91b-4629-8096-297fcbe2afc2
-
+Migrated Vuejs to Reactjs auth and Laravel scaffold to be in harmony with the react board
