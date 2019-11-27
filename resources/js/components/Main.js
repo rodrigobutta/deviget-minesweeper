@@ -47,6 +47,31 @@ class Main extends React.Component {
 
     }
 
+    handleOnGameEnds = (result) => {
+
+        const { game } = this.state;
+
+        fetch('/api/games/' + game.id, {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            method: 'PUT',
+            body: JSON.stringify({
+                result: result,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            if(result){
+                alert('You WIN!!')
+            }
+            else{
+                alert('You Loose')
+            }
+
+        })
+
+    }
+
     render(){
         
         const { game, levels } = this.state;
@@ -55,7 +80,7 @@ class Main extends React.Component {
             <React.Fragment>
 
                 {game?
-                    <Board level={game.level} />                    
+                    <Board level={game.level} onGameEnds={this.handleOnGameEnds} />                    
                 :
                     <ul>
                         {levels.map((level) => {
