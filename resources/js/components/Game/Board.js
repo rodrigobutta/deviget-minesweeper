@@ -93,10 +93,27 @@ class Board extends React.Component {
 
     }
 
-    handleCellClick = (target, y, x) => {
+    handleBoxClick = (target, y, x) => {
+      
+      let { grid } = this.state;
+
     
+      if(!this.boxExists(y,x) || grid[y][x].clicked === true){
+        return false;
+      }
+
+      grid[y][x].clicked = true;
+
+      this.setState(grid);
+
     }
-  
+
+    
+    boxExists = (y, x) => {    
+      return !(y < 0 || x < 0 || y >= this.props.level.rows || x >= this.props.level.cols);        
+    }
+
+    
     componentDidMount(nextProps) {
       
       const { cols, rows, mines } = this.props.level;
