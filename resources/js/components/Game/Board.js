@@ -99,7 +99,8 @@ class Board extends React.Component {
   
     componentDidMount(nextProps) {
       
-      this.buildGridArray(10, 10, 4)
+      const { cols, rows, mines } = this.props.level;
+      this.buildGridArray(cols, rows, mines)
 
     }
 

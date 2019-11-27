@@ -55,7 +55,7 @@ class Main extends React.Component {
             <React.Fragment>
 
                 {game?
-                    <Board />                    
+                    <Board level={game.level} />                    
                 :
                     <ul>
                         {levels.map((level) => {
