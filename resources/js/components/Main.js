@@ -27,6 +27,26 @@ class Main extends React.Component {
         return JSON.parse(this.props.user); 
     }
 
+    handleNewGameClick = (levelId) => {
+
+        const user = this.getSessionUser();
+
+        fetch('/api/games', {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            method: 'POST',
+            body: JSON.stringify({
+                user_id: user.id,
+                level_id: levelId,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            data.object.grid = [];
+            this.setState({game: data.object})
+        })
+
+    }
+
     render(){
         
         const { game, levels } = this.state;

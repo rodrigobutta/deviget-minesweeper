@@ -98,8 +98,7 @@ class Board extends React.Component {
     }
   
     componentDidMount(nextProps) {
-      console.log('ssss')
-    
+      
       this.buildGridArray(10, 10, 4)
 
     }
