@@ -2,30 +2,41 @@
 namespace App\Repositories;
 
 use App\Game;
+use App\Level;
 
 class GameRepository
 {
     protected $gameModel;
+    protected $levelModel;
 
     private $default_level = 1;
 
     public function __construct(
-        Game $gameModel       
+        Game $gameModel,
+        Level $levelModel
     ) {
-        $this->gameModel = $gameModel;       
+        $this->gameModel = $gameModel; 
+        $this->levelModel = $levelModel;       
     }
 
     public function getAll()
     {
-     
-        $games = $this->gameModel::with('level','user')->get();
+        return $this->gameModel::with('level','user')->get();
+    }
 
-        return $games;
+    public function getLevels()
+    {
+        return $this->levelModel::get();
     }
 
     public function getById($id)
     {
         return $this->gameModel::with('level','user')->find($id);
+    }
+
+    public function getByUserId($id)
+    {
+        return $this->gameModel::with('level','user')->where('user_id',$id)->orderBy('created_at','DESC')->get();
     }
 
     public function create($params)
@@ -41,20 +52,21 @@ class GameRepository
 
         $game->save();
     
-        return $game;
+        return $this->getById($game->id);
     }
 
-    public function update(Game $game, $params)
+    public function endGame(Game $game, $result)
     {
-     
-        $won = $params['won'] ? intval($params['won']) : 0;
-       
-        $game->won = $won;
+    
+        $endedAt = \Carbon\Carbon::now();
+        $game->ended_at = $endedAt->toDateTimeString();
+
+        $game->won = $result?1:0;
 
         $game->save();
     
-        return $game;
-
+        return $this->getById($game->id);;
+        
     }
 
     public function delete(Game $gameModel)

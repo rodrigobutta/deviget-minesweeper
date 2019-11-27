@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Repositories\GameRepository;
-
-// use App\Game; not gonna need it, trying to put a simple repo
 
 class GameController extends Controller
 {
@@ -25,9 +22,36 @@ class GameController extends Controller
 
         $games = $this->repo->getAll();
 
-        $response = [
-            'message' => 'games',
+        $response = [     
             'items' => $games
+        ];
+       
+        return response()->json($response, 201);
+        
+    }
+
+    public function getUserGames($userId)
+    {
+        // get user Games
+
+        $games = $this->repo->getByUserId($userId);
+
+        $response = [            
+            'items' => $games
+        ];
+       
+        return response()->json($response, 201);
+        
+    }
+
+    public function getLevels()
+    {
+        // get game levels
+
+        $levels = $this->repo->getLevels();
+
+        $response = [
+            'items' => $levels
         ];
        
         return response()->json($response, 201);
@@ -41,17 +65,14 @@ class GameController extends Controller
         if($createdGame = $this->repo->create($request->all())){
 
             return response()->json([
-                'message' => 'game created',
                 'object' => $createdGame
             ], 201);
 
         }
         else{
-            
             return response()->json([
                 'message' => 'error creating game'
             ], 500);
-
         }
 
     }
@@ -63,42 +84,30 @@ class GameController extends Controller
         if($game = $this->repo->getById($id)){
 
             return response()->json([
-                'message' => 'game found',
                 'object' => $game
             ], 201);
             
         }
         else{
-
             return response()->json([
                 'message' => 'game not found'
             ], 400);
-
         }
 
     }
 
-    public function updateGame(Request $request, $id)
+    public function endGame(Request $request, $id)
     {
-        // update a Game
+        // end the game (win or loose)
 
         $game = $this->repo->getById($id);
+        $result = $request->result === 'true'? true: false;; 
 
-        if($updatedGame = $this->repo->update($game, $request->all())){
+        $this->repo->endGame($game, $result);
 
-            return response()->json([
-                'message' => 'game updated',
-                'object' => $updatedGame
-            ], 201);
-
-        }
-        else{
-            
-            return response()->json([
-                'message' => 'error updating game'
-            ], 500);
-
-        }
+        return response()->json([
+            'object' => $game
+        ], 201);
 
     }
 
@@ -111,12 +120,10 @@ class GameController extends Controller
         if($this->repo->delete($game)){
 
         }
-        else{
-            
+        else{ 
             return response()->json([
                 'message' => 'error deleting game'
             ], 500);
-
         }
 
     }
