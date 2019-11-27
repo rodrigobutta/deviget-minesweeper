@@ -18,14 +18,14 @@ class GameRepository
     public function getAll()
     {
      
-        $games = $this->gameModel::get();
+        $games = $this->gameModel::with('level','user')->get();
 
         return $games;
     }
 
     public function getById($id)
     {
-        return $this->gameModel->find($id);
+        return $this->gameModel::with('level','user')->find($id);
     }
 
     public function create($params)
