@@ -52,3 +52,10 @@ Please email your solution as soon as you have completed the challenge or the ti
 - Make a blank React app and put it inside a blade. Do some tests to pass laravel session params thru JS to have the user ID inside at least. I would do an standalone app to build a layered pattern site, but i wont be able to achieve nothing in time, so i'll try to build it this way. (i'm choosing React beacuse i'm more fresh with it right now and i also have some game basic logic already built that i could use.. in wich case, i'll let you know wich parts i've reused in the comments)
 
 
+
+
+### postman urls
+
+
+GET http://local.deviget-minesweeper.com/api/games/42bb65ce-e91b-4629-8096-297fcbe2afc2
+

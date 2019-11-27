@@ -17,7 +17,10 @@ class GameRepository
 
     public function getAll()
     {
-       
+     
+        $games = $this->gameModel::get();
+
+        return $games;
     }
 
     public function getById($id)
@@ -41,14 +44,22 @@ class GameRepository
         return $game;
     }
 
-    public function update(Game $gameModel, $params)
+    public function update(Game $game, $params)
     {
+     
+        $won = $params['won'] ? intval($params['won']) : 0;
        
+        $game->won = $won;
+
+        $game->save();
+    
+        return $game;
+
     }
 
     public function delete(Game $gameModel)
     {
-       
+        return false; // no game will be deleted this time!!
     }
 
 }

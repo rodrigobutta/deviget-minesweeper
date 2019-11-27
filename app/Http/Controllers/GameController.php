@@ -23,7 +23,15 @@ class GameController extends Controller
     {
         // get all Games
 
-        return 'all games here';
+        $games = $this->repo->getAll();
+
+        $response = [
+            'message' => 'games',
+            'items' => $games
+        ];
+       
+        return response()->json($response, 201);
+        
     }
 
     public function createGame(Request $request)
@@ -39,7 +47,11 @@ class GameController extends Controller
 
         }
         else{
-            dd('not yet handled error here!!');
+            
+            return response()->json([
+                'message' => 'error creating game'
+            ], 500);
+
         }
 
     }
@@ -75,13 +87,17 @@ class GameController extends Controller
         if($updatedGame = $this->repo->update($game, $request->all())){
 
             return response()->json([
-                'message' => 'game created',
+                'message' => 'game updated',
                 'object' => $updatedGame
             ], 201);
 
         }
         else{
-            dd('not yet handled error here!!');
+            
+            return response()->json([
+                'message' => 'error updating game'
+            ], 500);
+
         }
 
     }
@@ -89,6 +105,20 @@ class GameController extends Controller
     public function deleteGame($id)
     {
         // delete a Game
+
+        $game = $this->repo->getById($id);
+
+        if($this->repo->delete($game)){
+
+        }
+        else{
+            
+            return response()->json([
+                'message' => 'error deleting game'
+            ], 500);
+
+        }
+
     }
 
 }
