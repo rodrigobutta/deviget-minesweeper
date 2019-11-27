@@ -15,6 +15,10 @@
                     @endif
 
                     You are logged in!
+
+
+                    <div id="board" user='{{ $user }}'></div>
+
                 </div>
             </div>
         </div>

@@ -25,3 +25,4 @@ Route::get('games/{id}', 'GameController@getGame');
 Route::post('games', 'GameController@createGame');
 Route::put('games/{id}', 'GameController@updateGame');
 Route::delete('games/{id}','GameController@deleteGame');
+

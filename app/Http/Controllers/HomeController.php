@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+use Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -23,6 +26,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = auth()->user();
+
+        return view('home')->with(compact("user"));
     }
+
+    public function currentUser(Request $request){    
+           
+        if($request->ajax()){
+            $user = auth()->user();
+            return response()->json($user);
+        }
+
+    }
+
+
 }
