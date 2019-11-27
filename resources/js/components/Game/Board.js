@@ -98,7 +98,7 @@ class Board extends React.Component {
       let { grid } = this.state;
 
     
-      if(!this.boxExists(y,x) || grid[y][x].clicked === true){
+      if(!this.cellExists(y,x) || grid[y][x].clicked === true){
         return false;
       }
 
@@ -113,9 +113,16 @@ class Board extends React.Component {
 
       this.setState(grid,() => {
         
-        if (this.boxExists(y,x) && grid[y][x].value === 0) {          
+        if (this.cellExists(y,x) && grid[y][x].value === 0) {          
           this.clickSurrounding(y,x)
         }
+
+        // if unchecked boxes count equals the game mines count, then it's a win
+
+        if(this.unclickedCellsCount(grid) === this.props.level.mines){
+          this.props.onGameEnds(true);
+        }
+
 
       });
 
@@ -138,8 +145,12 @@ class Board extends React.Component {
       return;
     }
 
-    boxExists = (y, x) => {    
+    cellExists = (y, x) => {    
       return !(y < 0 || x < 0 || y >= this.props.level.rows || x >= this.props.level.cols);        
+    }
+
+    unclickedCellsCount = (arr) => {
+      return arr.reduce((acc, subarray) => acc + subarray.filter(item => !item.clicked).length , 0);
     }
 
     

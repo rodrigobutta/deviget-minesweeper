@@ -70566,7 +70566,7 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_this), "handleCellClick", function (target, y, x) {
       var grid = _this.state.grid;
 
-      if (!_this.boxExists(y, x) || grid[y][x].clicked === true) {
+      if (!_this.cellExists(y, x) || grid[y][x].clicked === true) {
         return false;
       }
 
@@ -70577,8 +70577,13 @@ function (_React$Component) {
       }
 
       _this.setState(grid, function () {
-        if (_this.boxExists(y, x) && grid[y][x].value === 0) {
+        if (_this.cellExists(y, x) && grid[y][x].value === 0) {
           _this.clickSurrounding(y, x);
+        } // if unchecked boxes count equals the game mines count, then it's a win
+
+
+        if (_this.unclickedCellsCount(grid) === _this.props.level.mines) {
+          _this.props.onGameEnds(true);
         }
       });
     });
@@ -70618,8 +70623,16 @@ function (_React$Component) {
       return;
     });
 
-    _defineProperty(_assertThisInitialized(_this), "boxExists", function (y, x) {
+    _defineProperty(_assertThisInitialized(_this), "cellExists", function (y, x) {
       return !(y < 0 || x < 0 || y >= _this.props.level.rows || x >= _this.props.level.cols);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "unclickedCellsCount", function (arr) {
+      return arr.reduce(function (acc, subarray) {
+        return acc + subarray.filter(function (item) {
+          return !item.clicked;
+        }).length;
+      }, 0);
     });
 
     return _this;
