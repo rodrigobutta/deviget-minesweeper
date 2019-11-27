@@ -40,6 +40,9 @@ Please email your solution as soon as you have completed the challenge or the ti
 
 ## Rodrigo's notes
 
+
+Live version [here](http://deviget.rodrigobutta.com)
+
 ### Plan Part 1
 
 - I'm going to build a plain laravel app
@@ -57,3 +60,15 @@ Please email your solution as soon as you have completed the challenge or the ti
 ### Real world
 
 Migrated Vuejs to Reactjs auth and Laravel scaffold to be in harmony with the react board
+
+
+### Build
+
+1) Clone Repo.
+2) Create database.
+3) Put database credentials and the final domain in the .env file
+4) Generate new project key with ´php artisan key:generate´
+5) Generate database structure with migration ´php artisan migrate´
+6) Populate levels table (coulnd't do an admin for that) with ´php artisan db:seed´
+7) Compile SCSS, JS, React and keep wagching changes ´npm run dev´
+8) Point the root of the server to de /public folder
