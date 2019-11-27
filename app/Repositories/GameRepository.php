@@ -20,18 +20,23 @@ class GameRepository
        
     }
 
+    public function getById($id)
+    {
+        return $this->gameModel->find($id);
+    }
+
     public function create($params)
     {
         $game = new Game;
 
-        var_dump($params);
-        exit();
-        
-        $game->user_id = 1;
-        $game->level_id = $params->level_id || $this->default_level;
+        $user_id = $params['user_id'] ? intval($params['user_id']) : 1;
+        $level_id = $params['level_id'] ? intval($params['level_id']) : $this->default_level;
+
+        $game->user_id = $user_id;
+        $game->level_id = $level_id;
         $game->won = 0;
 
-        // $game->save();
+        $game->save();
     
         return $game;
     }
