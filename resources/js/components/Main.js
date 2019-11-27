@@ -16,7 +16,7 @@ class Main extends React.Component {
         return (                              
             <React.Fragment>
                 
-                <Board level={2}  />  
+                <Board />  
 
             </React.Fragment>
         );
