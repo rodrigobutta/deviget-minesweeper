@@ -104,6 +104,13 @@ class Board extends React.Component {
 
       grid[y][x].clicked = true;
 
+
+      // click on a mine box, loose
+      if(grid[y][x].value === -1){
+        this.props.onGameEnds(false);
+      }
+
+
       this.setState(grid,() => {
         
         if (this.boxExists(y,x) && grid[y][x].value === 0) {          

@@ -70570,7 +70570,11 @@ function (_React$Component) {
         return false;
       }
 
-      grid[y][x].clicked = true;
+      grid[y][x].clicked = true; // click on a mine box, loose
+
+      if (grid[y][x].value === -1) {
+        _this.props.onGameEnds(false);
+      }
 
       _this.setState(grid, function () {
         if (_this.boxExists(y, x) && grid[y][x].value === 0) {
