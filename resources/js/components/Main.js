@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Board from './Game/Board';
+import GameList from './GameList';
 
 class Main extends React.Component {
 
     state = {                  
         game: null,
-        levels: []
+        levels: [],
+        games: []
     };
 
     componentDidMount(){
@@ -21,6 +23,13 @@ class Main extends React.Component {
         .then(response => response.json())
         .then(data => this.setState({levels: data.items}))
         
+        fetch('/api/games/user/' + user.id, {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            method: 'GET'            
+        })
+        .then(response => response.json())
+        .then(data => this.setState({games: data.items}))
+
     }
 
     getSessionUser = () =>{
@@ -74,7 +83,7 @@ class Main extends React.Component {
 
     render(){
         
-        const { game, levels } = this.state;
+        const { game, levels, games } = this.state;
 
         return (                              
             <React.Fragment>
@@ -87,6 +96,13 @@ class Main extends React.Component {
                             return (<li key={level.id}><button onClick={() => this.handleNewGameClick(level.id)}>{level.name}</button></li>)
                         })}
                     </ul>
+                }
+
+                <h2>Your Past Games</h2>
+                {games?
+                    <GameList games={games} />
+                :
+                    <h4>You havent played any games yet</h4>
                 }
 
             </React.Fragment>

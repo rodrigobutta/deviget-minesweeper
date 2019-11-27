@@ -6379,6 +6379,25 @@ exports.push([module.i, ".Board {\n  background-color: #f3f2f2;\n  width: 100%;\
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/js/components/GameList.scss":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./resources/js/components/GameList.scss ***!
+  \**********************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".GameList-table {\n  width: 100%;\n}\n.GameList-table td {\n  font-size: 0.75em;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/lib/css-base.js":
 /*!*************************************************!*\
   !*** ./node_modules/css-loader/lib/css-base.js ***!
@@ -70819,20 +70838,21 @@ Cell.defaultProps = {
 
 /***/ }),
 
-/***/ "./resources/js/components/Main.js":
-/*!*****************************************!*\
-  !*** ./resources/js/components/Main.js ***!
-  \*****************************************/
-/*! no exports provided */
+/***/ "./resources/js/components/GameList.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/GameList.js ***!
+  \*********************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Game_Board__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Game/Board */ "./resources/js/components/Game/Board.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _GameList_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GameList.scss */ "./resources/js/components/GameList.scss");
+/* harmony import */ var _GameList_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_GameList_scss__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -70852,6 +70872,132 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var GameList =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(GameList, _React$Component);
+
+  function GameList() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, GameList);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(GameList)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "renderRow", function (item) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+        key: item.id
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.level.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.won ? 'WON' : 'LOST'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.ended_at), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, !item.ended_at && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this.props.onGameClick(item);
+        }
+      }, "Resume Game")));
+    });
+
+    return _this;
+  }
+
+  _createClass(GameList, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var games = this.props.games;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+        className: "GameList-table"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Player"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Level"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Result"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Ended At"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, games.map(function (game) {
+        return _this2.renderRow(game);
+      })));
+    }
+  }]);
+
+  return GameList;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+GameList.propTypes = {
+  games: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  onGameClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
+};
+/* harmony default export */ __webpack_exports__["default"] = (GameList);
+
+/***/ }),
+
+/***/ "./resources/js/components/GameList.scss":
+/*!***********************************************!*\
+  !*** ./resources/js/components/GameList.scss ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!./GameList.scss */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/js/components/GameList.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/js/components/Main.js":
+/*!*****************************************!*\
+  !*** ./resources/js/components/Main.js ***!
+  \*****************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Game_Board__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Game/Board */ "./resources/js/components/Game/Board.js");
+/* harmony import */ var _GameList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./GameList */ "./resources/js/components/GameList.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -70877,7 +71023,8 @@ function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       game: null,
-      levels: []
+      levels: [],
+      games: []
     });
 
     _defineProperty(_assertThisInitialized(_this), "getSessionUser", function () {
@@ -70949,6 +71096,18 @@ function (_React$Component) {
           levels: data.items
         });
       });
+      fetch('/api/games/user/' + user.id, {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        method: 'GET'
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        return _this2.setState({
+          games: data.items
+        });
+      });
     }
   }, {
     key: "render",
@@ -70957,7 +71116,8 @@ function (_React$Component) {
 
       var _this$state = this.state,
           game = _this$state.game,
-          levels = _this$state.levels;
+          levels = _this$state.levels,
+          games = _this$state.games;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, game ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Game_Board__WEBPACK_IMPORTED_MODULE_2__["default"], {
         level: game.level,
         onGameEnds: this.handleOnGameEnds
@@ -70969,7 +71129,9 @@ function (_React$Component) {
             return _this3.handleNewGameClick(level.id);
           }
         }, level.name));
-      })));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your Past Games"), games ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GameList__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        games: games
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "You havent played any games yet"));
     }
   }]);
 
