@@ -93,7 +93,7 @@ class Board extends React.Component {
 
     }
 
-    handleBoxClick = (target, y, x) => {
+    handleCellClick = (target, y, x) => {
       
       let { grid } = this.state;
 
@@ -104,11 +104,33 @@ class Board extends React.Component {
 
       grid[y][x].clicked = true;
 
-      this.setState(grid);
+      this.setState(grid,() => {
+        
+        if (this.boxExists(y,x) && grid[y][x].value === 0) {          
+          this.clickSurrounding(y,x)
+        }
+
+      });
 
     }
 
-    
+
+    // recursive
+    clickSurrounding = (y, x) => {
+      
+      let yList = [y - 1, y, y + 1];
+      let xList = [x - 1, x, x + 1];
+
+      for (let i of yList) {
+        for (let j of xList) {
+          
+          this.handleCellClick(null,i,j);
+
+        }
+      }
+      return;
+    }
+
     boxExists = (y, x) => {    
       return !(y < 0 || x < 0 || y >= this.props.level.rows || x >= this.props.level.cols);        
     }
