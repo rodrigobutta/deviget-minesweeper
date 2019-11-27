@@ -70,6 +70,10 @@ class Main extends React.Component {
         .then(response => response.json())
         .then(data => {
 
+            this.setState(prevState => ({
+                games: [data.object, ...prevState.games]
+            }))
+
             if(result){
                 alert('You WIN!!')
             }
